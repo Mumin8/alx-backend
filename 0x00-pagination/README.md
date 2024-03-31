@@ -6,3 +6,11 @@ Without pagination, a simple search could return millions or even billions of hi
 
 Paging requires an implied ordering. By default this may be the item’s unique identifier, but can be other ordered fields such as a created date.
 
+
+
+# Task 
+Write a function named index_range that takes two integer arguments page and page_size.
+
+The function should return a tuple of size two containing a start index and an end index corresponding to the range of indexes to return in a list for those particular pagination parameters.
+
+Page numbers are 1-indexed, i.e. the first page is page 1.
