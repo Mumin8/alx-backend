@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Deletion-resilient hypermedia pagination
+3-hypermedia_del_pagination
 """
 
 import csv
@@ -67,5 +67,4 @@ class Server:
             "index": index,
             "next_index": next_index,
             "page_size": page_size,
-            "data": data
-        }
+            "data": data }
