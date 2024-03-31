@@ -44,8 +44,8 @@ class Server:
         Return a dictionary containing hypermedia index information for a given index or page number.
 
         Args:
-            index (int): The index of the item to retrieve.
-            page_size (int): The number of items per page.
+            index (int): The index of the item to retrieve. Defaults to None.
+            page_size (int): The number of items per page. Defaults to 10.
 
         Returns:
             Dict: A dictionary containing hypermedia index information.
@@ -54,24 +54,18 @@ class Server:
         total_pages = math.ceil(dataset_len / page_size)
 
         if index is None:
-            return {
-                "index": None,
-                "page_size": page_size,
-                "current_page": None,
-                "total_pages": total_pages,
-                "items": {}
-            }
+            index = 0
+        assert 0 <= index < dataset_len, "Index out of range"
 
         current_page = index // page_size + 1
-        start_index = (current_page - 1) * page_size
-        end_index = min(start_index + page_size, dataset_len)
+        start_index = index
+        next_index = min(index + page_size, dataset_len)
 
-        items = {i: self.dataset()[i] for i in range(start_index, end_index)}
+        data = self.dataset()[start_index:next_index]
 
         return {
             "index": index,
+            "next_index": next_index,
             "page_size": page_size,
-            "current_page": current_page,
-            "total_pages": total_pages,
-            "items": items
+            "data": data
         }
