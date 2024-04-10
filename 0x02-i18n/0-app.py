@@ -3,17 +3,15 @@
 """
 
 
-from flask import Flask, render_template
+from flask import Flask
+from helloword_bp import hello_world_bp
 
 app = Flask(__name__)
+app.register_blueprint(hello_world_bp)
 
 
-@app.route('/')
-def hello_world():
-    """_summary_
-    """
-    return render_template('0-index.html')
+
 
 
 if __name__ == '__main__':
-    app.run(port="5000", host="0.0.0.0", debug=True)
+    app.run(debug=True)
