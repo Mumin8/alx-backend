@@ -10,8 +10,5 @@ app = Flask(__name__)
 app.register_blueprint(hello_world_bp)
 
 
-
-
-
 if __name__ == '__main__':
     app.run(debug=True)
